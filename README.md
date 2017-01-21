@@ -7,30 +7,30 @@ A simple CLI for handling the CDPATH environment variable.
 
 `CDPATH` is an environment variable present on Unix-based systems that allows you to create shortcuts to any directory on your system, which will be accessible by using the `cd` command. Consider the directory: `$HOME/company/projects/my_project`. With `CDPATH`,
 you can access it by defining a shortcut (the name, though, must be the last directory name):
-```
+```shell
 $ cd my_project
 ~/company/projects/my_project
 ```
 But, for that to happen, you'd have to `export CDPATH` with the following structure, and keep it saved on your shell's `rc file (.bashrc, .zshrc...)`:
-```
+```shell
 $ export CDPATH=".:my_project:$HOME/company/projects/"
 ```
 ## Installation
 
 Copy the file `cdpath.sh` to any directory you'd like (usually, I'd use `/usr/local/bin/`), then add the following line to your shell's `rc file (.bashrc, .zshrc...)`:
-```
+```shell
 source "/path/to/cdpath.sh"
 ```
 So, if you chose `/usr/local/bin/`:
-```
+```shell
 source "/usr/local/bin/cdpath.sh"
 ```
 Then, restart or source your shell:
-```
+```shell
 $ . ~/.zshrc
 ```
 ###### OR
-```
+```shell
 $ . ~/.bashrc
 ```
 
@@ -51,7 +51,7 @@ By using `cdpath.sh`, you can not only have more control over the paths you choo
 #### Base Command
 
 By typing only `cdpath`, you'll see this:
-```
+```shell
 $ cdpath
 usage: cdpath [-h] [-r] [-l] [-i] [-u] <name> <path>
 See "cdpath -h" for help.
@@ -59,7 +59,7 @@ See "cdpath -h" for help.
 
 #### Asking for help
 
-```
+```shell
 $ cdpath -h
 cdpath basic usage: "cdpath <name> <path>"
     name    The path's shortcut, called with "cd"
@@ -76,34 +76,34 @@ cdpath options:
 #### Adding a path/shortcut
 
 `cdpath.sh` accepts any of the following path structures:
-```
+```shell
 $ cdpath my_project $HOME/company/projects/
 ```
 
-```
+```shell
 $ cdpath my_project $HOME/company/projects/my_project
 ```
-```
+```shell
 $ cdpath my_project .
 ```
 
-```
+```shell
 $ cdpath my_project company/projects/
 ```
 
-```
+```shell
 $ cdpath my_project company/projects/my_project
 ```
 
 #### Removing a path/shortcut
 
 `cdpath.sh` will loop through the arguments after the `-r` option and try to remove all of the given shortcuts:
-```
+```shell
 $ cdpath -r my_project
 Successfully removed "my_project"
 ```
 
-```
+```shell
 $ cdpath -r my_project another_folder
 Successfully removed "my_project"
 There's no shortcut named "another_folder"
@@ -111,7 +111,7 @@ There's no shortcut named "another_folder"
 
 #### Listing paths/shortcuts
 
-```
+```shell
 $ cdpath -l
 Shortcuts:
     my_project -> /home/user/company/projects/my_project
@@ -120,20 +120,20 @@ Shortcuts:
 #### Installing the `.cdpath` file
 
 *This action will be performed when you add a new shortcut*, but if you want to create and configure the `~/.cdpath` file (in case you changed shells and that shell isn't properly configured, for example), you can just call:
-```
+```shell
 cdpath -i
 ```
 
 #### Uninstalling the `.cdpath` file
 
 To remove the `~/.cdpath` file and it's `source` from the shell's rc file, just type:
-```
+```shell
 $ cdpath -u
 Are you sure you want to remove cdpath?
 All your shortcuts will be lost! (y/N): 
 ```
 ###### Or, to skip input:
-```
+```shell
 $ cdpath -u -y
 Uninstalling cdpath...
 Done.
