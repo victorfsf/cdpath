@@ -15,6 +15,24 @@ But, for that to happen, you'd have to `export CDPATH` with the following struct
 ```
 $ export CDPATH=".:my_project:$HOME/company/projects/"
 ```
+## Installation
+
+Copy the file `cdpath.sh` to any directory you'd like (usually, I'd use `/usr/local/bin/`), then add the following line to your shell's `rc file (.bashrc, .zshrc...)`:
+```
+source "/path/to/cdpath.sh"
+```
+So, if you chose `/usr/local/bin/`:
+```
+source "/usr/local/bin/cdpath.sh"
+```
+Then, restart or source your shell:
+```
+$ . ~/.zshrc
+```
+###### OR
+```
+$ . ~/.bashrc
+```
 
 ## Using cdpath.sh
 
@@ -22,13 +40,13 @@ By using `cdpath.sh`, you can not only have more control over the paths you choo
 
 ### Sumary:
 
-  - [Base Command]()
-  - [Asking for help]()
-  - [Adding a path/shortcut]()
-  - [Removing a path/shortcut]()
-  - [Listing paths/shortcuts]()
-  - [Installing the `.cdpath` file]()
-  - [Uninstalling the `.cdpath` file]()
+  - [Base Command](#base-command)
+  - [Asking for help](#asking-for-help)
+  - [Adding a path/shortcut](#adding-a-pathshortcut)
+  - [Removing a path/shortcut](#removing-a-pathshortcut)
+  - [Listing paths/shortcuts](#listing-pathsshortcuts)
+  - [Installing the `.cdpath` file](#installing-the-cdpath-file)
+  - [Uninstalling the `.cdpath` file](#uninstalling-the-cdpath-file)
 
 #### Base Command
 
@@ -58,7 +76,6 @@ cdpath options:
 #### Adding a path/shortcut
 
 `cdpath.sh` accepts any of the following path structures:
-
 ```
 $ cdpath my_project $HOME/company/projects/
 ```
@@ -89,10 +106,16 @@ Successfully removed "my_project"
 ```
 $ cdpath -r my_project another_folder
 Successfully removed "my_project"
-There's no path mapped to "another_folder"
+There's no shortcut named "another_folder"
 ```
 
 #### Listing paths/shortcuts
+
+```
+$ cdpath -l
+Shortcuts:
+    my_project -> /home/user/company/projects/my_project
+```
 
 #### Installing the `.cdpath` file
 
