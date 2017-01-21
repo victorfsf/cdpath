@@ -51,7 +51,7 @@ By using `cdpath.sh`, you can not only have more control over the paths you choo
 #### Base Command
 
 By typing only `cdpath`, you'll see this:
-```shell
+```
 $ cdpath
 usage: cdpath [-h] [-r] [-l] [-i] [-u] <name> <path>
 See "cdpath -h" for help.
@@ -59,7 +59,7 @@ See "cdpath -h" for help.
 
 #### Asking for help
 
-```shell
+```
 $ cdpath -h
 cdpath basic usage: "cdpath <name> <path>"
     name    The path's shortcut, called with "cd"
