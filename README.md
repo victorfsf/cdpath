@@ -7,30 +7,35 @@ A simple CLI for handling the CDPATH environment variable.
 
 `CDPATH` is an environment variable present on Unix-based systems that allows you to create shortcuts to any directory on your system, which will be accessible by using the `cd` command. Consider the directory: `$HOME/company/projects/my_project`. With `CDPATH`,
 you can access it by defining a shortcut (the name, though, must be the last directory name):
-```
+```shell
 $ cd my_project
 ~/company/projects/my_project
 ```
 But, for that to happen, you'd have to `export CDPATH` with the following structure, and keep it saved on your shell's `rc file (.bashrc, .zshrc...)`:
-```
+```shell
 $ export CDPATH=".:my_project:$HOME/company/projects/"
 ```
 ## Installation
 
-Copy the file `cdpath.sh` to any directory you'd like (usually, I'd use `/usr/local/bin/`), then add the following line to your shell's `rc file (.bashrc, .zshrc...)`:
+Download the file `cdpath.sh` to any directory you'd like (usually, I'd use `/usr/local/bin/`):
 ```
+curl -o /usr/local/bin/cdpath.sh https://raw.githubusercontent.com/victorfsf/cdpath/master/cdpath.sh
+```
+
+Then, add the following line to your shell's `rc file (.bashrc, .zshrc...)`:
+```shell
 source "/path/to/cdpath.sh"
 ```
 So, if you chose `/usr/local/bin/`:
-```
+```shell
 source "/usr/local/bin/cdpath.sh"
 ```
 Then, restart or source your shell:
-```
+```shell
 $ . ~/.zshrc
 ```
 ###### OR
-```
+```shell
 $ . ~/.bashrc
 ```
 
@@ -53,7 +58,7 @@ By using `cdpath.sh`, you can not only have more control over the paths you choo
 By typing only `cdpath`, you'll see this:
 ```
 $ cdpath
-usage: cdpath [-h] [-r] [-l] [-i] [-u] < name > < path >
+usage: cdpath [-h] [-r] [-l] [-i] [-u] <name> <path>
 See "cdpath -h" for help.
 ```
 
@@ -61,14 +66,14 @@ See "cdpath -h" for help.
 
 ```
 $ cdpath -h
-cdpath basic usage: "cdpath < name > < path >"
+cdpath basic usage: "cdpath <name> <path>"
     name    The path's shortcut, called with "cd"
     path    The path to link the name with
 
 cdpath options:
     -h    Shows help
-    -r    Removes a path from cdpath (e.g. "cdpath -r <name>")
-    -l    Lists all mapped paths
+    -r    Removes a shortcut from cdpath (e.g. "cdpath -r <name>")
+    -l    Lists all shortcuts and their respective paths
     -i    Installs cdpath
     -u    Uninstalls cdpath (use [-y] to skip input)
 ```
@@ -119,4 +124,22 @@ Shortcuts:
 
 #### Installing the `.cdpath` file
 
+*This action will be performed when you add a new shortcut*, but if you want to create and configure the `~/.cdpath` file (in case you changed shells and that shell isn't properly configured, for example), you can just call:
+```
+cdpath -i
+```
+
 #### Uninstalling the `.cdpath` file
+
+To remove the `~/.cdpath` file and it's `source` from the shell's rc file, just type:
+```
+$ cdpath -u
+Are you sure you want to remove cdpath?
+All your shortcuts will be lost! (y/N): 
+```
+###### Or, to skip input:
+```
+$ cdpath -u -y
+Uninstalling cdpath...
+Done.
+```
