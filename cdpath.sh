@@ -27,9 +27,9 @@ function cdpath() {
                 echo -e "    path    The path to link the name with\n"
                 echo "cdpath options:"
                 echo "    -h    Shows help"
-                echo "    -r    Removes a path from cdpath" \
+                echo "    -r    Removes a shortcut from cdpath" \
                      "(e.g. \"cdpath -r <name>\")"
-                echo "    -l    Lists all mapped paths"
+                echo "    -l    Lists all shortcuts and their respective paths"
                 echo "    -i    Installs cdpath"
                 echo "    -u    Uninstalls cdpath (use [-y] to skip input)"
             ;;
@@ -37,7 +37,7 @@ function cdpath() {
                 if [ "$2" != "-y" ]
                 then
                     echo -e -n "Are you sure you want to remove cdpath?\nAll" \
-                            "your mapped paths will be lost! (y/N): "
+                            "your shortcuts will be lost! (y/N): "
                     read -r choice
                     if [ "$shname" == "zsh" ]
                     then
@@ -72,7 +72,7 @@ function cdpath() {
                         cat $cdfile | grep "$remove" >/dev/null
                         if [ ! $? -eq 0 ]
                         then
-                            echo "There's no path mapped to \"$var\""
+                            echo "There's no shortcut named \"$var\""
                             return 1
                         else
                             sed -i "s/$remove//" $cdfile
@@ -85,10 +85,10 @@ function cdpath() {
             ;;
             -l)
                 local paths=`sed 's/^://' $cdfile`
-                echo "Mapped paths:"
+                echo "Shortcuts:"
                 if [ -z $paths ]
                 then
-                    echo "    ${bold}${red}Nothind to show here${reset}"
+                    echo "    ${bold}${red}Nothing to show here${reset}"
                     echo -e "\n$usage"
                 else
                     local paths=(`echo ${paths//\"/}`)
