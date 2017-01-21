@@ -10,7 +10,7 @@ function cdpath() {
     local shname=$(basename `/bin/ps -p $$ -oargs=`)
     local shell="$HOME/."$shname"rc"
 
-    local usage="usage: cdpath [-h] [-r] [-u] [-l] [-i] <name> <path>\nSee \"cdpath -h\" for help."
+    local usage="usage: cdpath [-h] [-r] [-l] [-i] [-u] <name> <path>\nSee \"cdpath -h\" for help."
     local expstring="export CDPATH=\".\`cat \"\$HOME/.cdpath\" | sed ':a;N;\$!ba;s/\\\n//g'\`\""
     if [ ! -f $shell ]
     then
