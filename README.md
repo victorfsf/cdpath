@@ -53,7 +53,7 @@ By using `cdpath.sh`, you can not only have more control over the paths you choo
 By typing only `cdpath`, you'll see this:
 ```
 $ cdpath
-usage: cdpath [-h] [-r] [-l] [-i] [-u] < name > < path >
+usage: cdpath [-h] [-r] [-l] [-i] [-u] <name> <path>
 See "cdpath -h" for help.
 ```
 
@@ -61,14 +61,14 @@ See "cdpath -h" for help.
 
 ```
 $ cdpath -h
-cdpath basic usage: "cdpath < name > < path >"
+cdpath basic usage: "cdpath <name> <path>"
     name    The path's shortcut, called with "cd"
     path    The path to link the name with
 
 cdpath options:
     -h    Shows help
-    -r    Removes a path from cdpath (e.g. "cdpath -r <name>")
-    -l    Lists all mapped paths
+    -r    Removes a shortcut from cdpath (e.g. "cdpath -r <name>")
+    -l    Lists all shortcuts and their respective paths
     -i    Installs cdpath
     -u    Uninstalls cdpath (use [-y] to skip input)
 ```
