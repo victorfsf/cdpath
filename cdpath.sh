@@ -10,12 +10,22 @@ function cdpath() {
     local shname=$(basename `/bin/ps -p $$ -oargs=`)
     local shell="$HOME/."$shname"rc"
 
+    local clearEOF=':a;/^[ \n]*$/{$d;N;ba}'
+
     local usage="usage: cdpath [-h] [-r] [-l] [-i] [-u] <name> <path>\nSee \"cdpath -h\" for help."
-    local expstring="export CDPATH=\".\`cat \"\$HOME/.cdpath\" | sed ':a;N;\$!ba;s/\\\n//g'\`\""
     if [ ! -f $shell ]
     then
         local shell="$HOME/.bashrc"
         local shname="bash"
+    fi
+
+    if [ "$shname" == "zsh" ]
+    then
+        local expstr="export CDPATH=\".\`cat \"\$HOME/.cdpath\" | sed ':a;N;\$!ba;s/\\\n//g'\`\""
+        local grepstr="export CDPATH=\".\`cat \"\$HOME/.cdpath\" | sed ':a;N;\$!ba;s/\\\n//g'\`\""
+    else
+        local expstr='export CDPATH=".`cat "$HOME/.cdpath" | sed ":a;N;$!ba;s/\n//g"`"'
+        local grepstr='export CDPATH=".`cat "$HOME/.cdpath" | sed ":a;N;\$!ba;s\/\\n//g"`"'
     fi
 
     if [[ "$1" =~ ^\-.* ]]
@@ -54,7 +64,12 @@ function cdpath() {
                     echo "Uninstalling cdpath..."
                     rm -rf $cdfile
                     sed -i 's/source "$HOME\/.cdpath"//' $shell
-                    sed -i '/^\s*$/d' $shell
+                    cat $shell | grep "$grepstr" >/dev/null
+                    if [ $? -eq 0 ]
+                    then
+                        cat $shell | grep -v "$grepstr" | tee $shell >/dev/null
+                    fi
+                    sed -i "$clearEOF" $shell
                     echo "Done."
                 fi
             ;;
@@ -72,13 +87,13 @@ function cdpath() {
                         cat $cdfile | grep "$remove" >/dev/null
                         if [ ! $? -eq 0 ]
                         then
-                            echo "There's no shortcut named \"$var\""
+                            echo "${red}There's no shortcut named \"$var\"${reset}"
                             return 1
                         else
                             sed -i "s/$remove//" $cdfile
-                            sed -i '/^\s*$/d' $cdfile
+                            sed -i $clearEOF $cdfile
                             export CDPATH=".:$var:"
-                            echo "${bold}Successfully removed \"$var\""
+                            echo "${bold}Successfully removed \"$var\"${reset}"
                         fi
                     done
                 fi
@@ -86,12 +101,15 @@ function cdpath() {
             -l)
                 local paths=`sed 's/^://' $cdfile`
                 echo "Shortcuts:"
-                if [ -z $paths ]
+                if [ -z "$paths" ]
                 then
                     echo "    ${bold}${red}Nothing to show here${reset}"
                     echo -e "\n$usage"
                 else
-                    local paths=(`echo ${paths//\"/}`)
+                    if [ "$shname" == "zsh" ]
+                    then
+                        local paths=(`echo ${paths//\"/}`)
+                    fi
                     for item in $paths
                     do
                         local item=(`echo ${item//:/ }`)
@@ -108,7 +126,7 @@ function cdpath() {
                 fi
             ;;
             -i)
-                cat $shell | grep $expstring 2>/dev/null >/dev/null
+                cat $shell | grep "$grepstr" >/dev/null
                 if [ $? -eq 1 ]
                 then
                     echo 'Installing cdpath...'
@@ -116,8 +134,8 @@ function cdpath() {
                     then
                         touch $cdfile
                     fi
-                    echo $expstring >> $shell
-                    echo "cdpath successfully installed!"
+                    echo $expstr >> $shell
+                    echo "Done."
                 fi
             ;;
             *)
@@ -167,7 +185,7 @@ function cdpath() {
             return 1
         fi
         sed -i 's/:'$1'.*//' $cdfile
-        sed -i '/^\s*$/d' $cdfile
+        sed -i $clearEOF $cdfile
 
         if [ -z "$CDPATH" ]
         then
@@ -176,12 +194,12 @@ function cdpath() {
             export CDPATH="$CDPATH:$1:$dest"
         fi
         echo ":$1:$dest" >> $cdfile
-        sed -i '/^\s*$/d' $cdfile
+        sed -i $clearEOF $cdfile
 
-        cat $shell | grep $expstring 2>/dev/null >/dev/null
+        cat $shell | grep $grepstr 2>/dev/null >/dev/null
         if [ $? -eq 1 ]
         then
-            echo $expstring >> $shell
+            echo $expstr >> $shell
         fi
     fi
 }
