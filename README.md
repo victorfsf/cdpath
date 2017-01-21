@@ -76,34 +76,34 @@ cdpath options:
 #### Adding a path/shortcut
 
 `cdpath.sh` accepts any of the following path structures:
-```shell
+```
 $ cdpath my_project $HOME/company/projects/
 ```
 
-```shell
+```
 $ cdpath my_project $HOME/company/projects/my_project
 ```
-```shell
+```
 $ cdpath my_project .
 ```
 
-```shell
+```
 $ cdpath my_project company/projects/
 ```
 
-```shell
+```
 $ cdpath my_project company/projects/my_project
 ```
 
 #### Removing a path/shortcut
 
 `cdpath.sh` will loop through the arguments after the `-r` option and try to remove all of the given shortcuts:
-```shell
+```
 $ cdpath -r my_project
 Successfully removed "my_project"
 ```
 
-```shell
+```
 $ cdpath -r my_project another_folder
 Successfully removed "my_project"
 There's no shortcut named "another_folder"
@@ -111,7 +111,7 @@ There's no shortcut named "another_folder"
 
 #### Listing paths/shortcuts
 
-```shell
+```
 $ cdpath -l
 Shortcuts:
     my_project -> /home/user/company/projects/my_project
@@ -120,20 +120,20 @@ Shortcuts:
 #### Installing the `.cdpath` file
 
 *This action will be performed when you add a new shortcut*, but if you want to create and configure the `~/.cdpath` file (in case you changed shells and that shell isn't properly configured, for example), you can just call:
-```shell
+```
 cdpath -i
 ```
 
 #### Uninstalling the `.cdpath` file
 
 To remove the `~/.cdpath` file and it's `source` from the shell's rc file, just type:
-```shell
+```
 $ cdpath -u
 Are you sure you want to remove cdpath?
 All your shortcuts will be lost! (y/N): 
 ```
 ###### Or, to skip input:
-```shell
+```
 $ cdpath -u -y
 Uninstalling cdpath...
 Done.
