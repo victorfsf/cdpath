@@ -17,7 +17,12 @@ $ export CDPATH=".:my_project:$HOME/company/projects/"
 ```
 ## Installation
 
-Copy the file `cdpath.sh` to any directory you'd like (usually, I'd use `/usr/local/bin/`), then add the following line to your shell's `rc file (.bashrc, .zshrc...)`:
+Download the file `cdpath.sh` to any directory you'd like (usually, I'd use `/usr/local/bin/`):
+```
+curl -o /usr/local/bin/cdpath.sh https://raw.githubusercontent.com/victorfsf/cdpath/master/cdpath.sh
+```
+
+Then, add the following line to your shell's `rc file (.bashrc, .zshrc...)`:
 ```shell
 source "/path/to/cdpath.sh"
 ```
