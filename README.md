@@ -119,4 +119,22 @@ Shortcuts:
 
 #### Installing the `.cdpath` file
 
+*This action will be performed when you add a new shortcut*, but if you want to create and configure the `~/.cdpath` file (in case you changed shells and that shell isn't properly configured, for example), you can just call:
+```
+cdpath -i
+```
+
 #### Uninstalling the `.cdpath` file
+
+To remove the `~/.cdpath` file and it's `source` from the shell's rc file, just type:
+```
+$ cdpath -u
+Are you sure you want to remove cdpath?
+All your shortcuts will be lost! (y/N): 
+```
+###### Or, to skip input:
+```
+$ cdpath -u -y
+Uninstalling cdpath...
+Done.
+```
