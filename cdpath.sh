@@ -1,4 +1,4 @@
-# @victorfsf - cdpath v0.5
+# @victorfsf - cdpath v0.1
 
 function cdpath() {
     local bold=`tput bold`
