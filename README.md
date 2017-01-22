@@ -47,7 +47,7 @@ $ . ~/.bashrc
 ### Using install.sh
 Download or clone this repository. Then, execute the following commands:
 ```
-$ chmod +x render.sh install.sh
+$ chmod +x render.sh install.sh lib/mo
 $ ./install.sh -<shell: zsh, bash>
 ```
 So, if you're using ZSH, you'd need to run:
