@@ -175,7 +175,7 @@ Done.
 
 ## Uninstalling
 
-To uninstall, just remove the `cdpath.sh` file and it's source from your shell's `rc file`:
+To uninstall, just remove the `cdpath.sh` file and its source from your shell's `rc file`:
 ```
 source "/usr/local/bin/cdpath.sh"
 ```
