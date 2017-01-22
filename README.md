@@ -17,7 +17,7 @@ $ export CDPATH=".:my_project:$HOME/company/projects/"
 ```
 ## Installation
 
-### Manual
+#### Manual Installation
 Download the file `cdpath.sh` to any directory you'd like (usually, I'd use `/usr/local/bin/`):
 ###### For BASH:
 ```
@@ -44,7 +44,7 @@ $ . ~/.zshrc
 $ . ~/.bashrc
 ```
 
-### Using install.sh
+#### Using install.sh
 Download or clone this repository. Then, execute the following commands:
 ```
 $ chmod +x render.sh install.sh lib/mo
@@ -173,7 +173,7 @@ Uninstalling cdpath...
 Done.
 ```
 
-## Uninstall
+## Uninstalling
 
 To uninstall, just remove the `cdpath.sh` file and it's source from your shell's `rc file`:
 ```
