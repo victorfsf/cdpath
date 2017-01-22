@@ -21,8 +21,9 @@ case "${1}" in
         install_cdpath zsh ~/.zshrc
     ;;
     -bash)
+        install_cdpath bash ~/.bashrc
     ;;
     *)
-        install_cdpath bash ~/.bashrc
+        echo "Invalid shell!"
     ;;
 esac
