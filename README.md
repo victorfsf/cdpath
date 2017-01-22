@@ -17,7 +17,7 @@ $ export CDPATH=".:my_project:$HOME/company/projects/"
 ```
 ## Installation
 
-### Manual
+#### Manual Installation
 Download the file `cdpath.sh` to any directory you'd like (usually, I'd use `/usr/local/bin/`):
 ###### For BASH:
 ```
@@ -44,7 +44,7 @@ $ . ~/.zshrc
 $ . ~/.bashrc
 ```
 
-### Using install.sh
+#### Using install.sh
 Download or clone this repository. Then, execute the following commands:
 ```
 $ chmod +x render.sh install.sh lib/mo
@@ -66,6 +66,7 @@ $ . ~/.zshrc
 ```shell
 $ . ~/.bashrc
 ```
+After installing, you can safely remove the repository files you downloaded.
 
 ## Using cdpath.sh
 
@@ -159,7 +160,7 @@ cdpath -i
 
 #### Uninstalling the `.cdpath` file
 
-To remove the `~/.cdpath` file and it's `source` from the shell's rc file, just type:
+To remove the `~/.cdpath` file and its `source` from the shell's rc file, just type:
 ```
 $ cdpath -u
 Are you sure you want to remove cdpath?
@@ -170,4 +171,16 @@ All your shortcuts will be lost! (y/N):
 $ cdpath -u -y
 Uninstalling cdpath...
 Done.
+```
+
+## Uninstalling
+
+To uninstall, just remove the `cdpath files` and its source from your shell's `rc file`:
+```
+source "/usr/local/bin/cdpath.sh"
+```
+Files to remove:
+```
+$HOME/.cdpath
+/usr/local/bin/cdpath.sh
 ```
