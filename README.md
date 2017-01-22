@@ -17,11 +17,16 @@ $ export CDPATH=".:my_project:$HOME/company/projects/"
 ```
 ## Installation
 
+### Manual
 Download the file `cdpath.sh` to any directory you'd like (usually, I'd use `/usr/local/bin/`):
+###### For BASH:
 ```
-curl -o /usr/local/bin/cdpath.sh https://raw.githubusercontent.com/victorfsf/cdpath/master/cdpath.sh
+curl -o /usr/local/bin/cdpath.sh https://raw.githubusercontent.com/victorfsf/cdpath/master/cdpath/cdpath.bash.sh
 ```
-
+###### For ZSH:
+```
+curl -o /usr/local/bin/cdpath.sh https://raw.githubusercontent.com/victorfsf/cdpath/master/cdpath/cdpath.zsh.sh
+```
 Then, add the following line to your shell's `rc file (.bashrc, .zshrc...)`:
 ```shell
 source "/path/to/cdpath.sh"
@@ -29,6 +34,29 @@ source "/path/to/cdpath.sh"
 So, if you chose `/usr/local/bin/`:
 ```shell
 source "/usr/local/bin/cdpath.sh"
+```
+Then, restart or source your shell:
+```shell
+$ . ~/.zshrc
+```
+###### OR
+```shell
+$ . ~/.bashrc
+```
+
+### Using install.sh
+Download or clone this repository. Then, execute the following commands:
+```
+$ chmod +x render.sh install.sh lib/mo
+$ ./install.sh -<shell: zsh, bash>
+```
+So, if you're using ZSH, you'd need to run:
+```
+$ ./install.sh -zsh
+```
+And if you're using Bash:
+```
+$ ./install.sh -bash
 ```
 Then, restart or source your shell:
 ```shell
