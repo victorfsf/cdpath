@@ -1,7 +1,7 @@
 #!/bin/bash
 
 . "assert.sh"
-. "../cdpath.sh"
+. "../cdpath/cdpath.bash.sh"
 
 bold=`tput bold`
 green=`tput setaf 2`
@@ -15,7 +15,7 @@ assert "cdpath _test_folder ."
 assert "cat ~/.cdpath | grep _test_folder" ":_test_folder:`pwd`/"
 rm -rf _test_folder
 assert "cdpath _test_folder ." "No such directory: `pwd`/_test_folder"
-
+assert "cdpath -?" "Unknown option: -?\n\nusage: cdpath [-h] [-r] [-l] [-i] [-u] <name> <path>\nSee \"cdpath -h\" for help."
 # -h option
 assert "cdpath -h" "cdpath basic usage: \"cdpath <name> <path>\"\n    name    The path's shortcut, called with \"cd\"\n    path    The path to link the name with\n\ncdpath options:\n    -h    Shows help\n    -r    Removes a shortcut from cdpath (e.g. \"cdpath -r <name>\")\n    -l    Lists all shortcuts and their respective paths\n    -i    Installs cdpath\n    -u    Uninstalls cdpath (use [-y] to skip input)"
 

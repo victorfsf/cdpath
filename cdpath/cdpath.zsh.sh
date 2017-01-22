@@ -7,26 +7,11 @@ function cdpath() {
     local reset=`tput sgr0`
 
     local cdfile=$HOME/.cdpath
-    local shname=$(basename `/bin/ps -p $$ -oargs=`)
-    local shell="$HOME/."$shname"rc"
-
+    local shell="~/.zshrc"
     local clearEOF=':a;/^[ \n]*$/{$d;N;ba}'
-
     local usage="usage: cdpath [-h] [-r] [-l] [-i] [-u] <name> <path>\nSee \"cdpath -h\" for help."
-    if [ ! -f $shell ]
-    then
-        local shell="$HOME/.bashrc"
-        local shname="bash"
-    fi
-
-    if [ "$shname" == "zsh" ]
-    then
-        local expstr="export CDPATH=\".\`cat \"\$HOME/.cdpath\" | sed ':a;N;\$!ba;s/\\\n//g'\`\""
-        local grepstr="export CDPATH=\".\`cat \"\$HOME/.cdpath\" | sed ':a;N;\$!ba;s/\\\n//g'\`\""
-    else
-        local expstr='export CDPATH=".`cat "$HOME/.cdpath" | sed ":a;N;$!ba;s/\n//g"`"'
-        local grepstr='export CDPATH=".`cat "$HOME/.cdpath" | sed ":a;N;\$!ba;s\/\\n//g"`"'
-    fi
+    local expstr="export CDPATH=".`cat "$HOME/.cdpath" | sed ':a;N;$!ba;s/\\n//g'`""
+    local grepstr="export CDPATH=".`cat "$HOME/.cdpath" | sed ':a;N;$!ba;s/\\n//g'`""
 
     if [[ "$1" =~ ^\-.* ]]
     then
@@ -42,36 +27,6 @@ function cdpath() {
                 echo "    -l    Lists all shortcuts and their respective paths"
                 echo "    -i    Installs cdpath"
                 echo "    -u    Uninstalls cdpath (use [-y] to skip input)"
-            ;;
-            -u)
-                if [ "$2" != "-y" ]
-                then
-                    echo -e -n "Are you sure you want to remove cdpath?\nAll" \
-                            "your shortcuts will be lost! (y/N): "
-                    read -r choice
-                    if [ "$shname" == "zsh" ]
-                    then
-                        local choice=$choice:l
-                    else
-                        local choice=${choice,,}
-                    fi
-                else
-                    local choice="y"
-                fi
-
-                if [ "$choice" == "y" ]
-                then
-                    echo "Uninstalling cdpath..."
-                    rm -rf $cdfile
-                    sed -i 's/source "$HOME\/.cdpath"//' $shell
-                    cat $shell | grep "$grepstr" >/dev/null
-                    if [ $? -eq 0 ]
-                    then
-                        cat $shell | grep -v "$grepstr" | tee $shell >/dev/null
-                    fi
-                    sed -i "$clearEOF" $shell
-                    echo "Done."
-                fi
             ;;
             -r)
                 shift
@@ -106,10 +61,7 @@ function cdpath() {
                     echo "    ${bold}${red}Nothing to show here${reset}"
                     echo -e "\n$usage"
                 else
-                    if [ "$shname" == "zsh" ]
-                    then
-                        local paths=(`echo ${paths//\"/}`)
-                    fi
+                    local paths=`echo ${paths//\"/}`
                     for item in $paths
                     do
                         local item=(`echo ${item//:/ }`)
@@ -123,6 +75,31 @@ function cdpath() {
                              "${reset}->" \
                              "${bold}${item[`expr $i + 1`]}${item[$i]}/${reset}"
                     done
+                fi
+            ;;
+            -u)
+                if [ "$2" != "-y" ]
+                then
+                    echo -e -n "Are you sure you want to remove cdpath?\nAll" \
+                            "your shortcuts will be lost! (y/N): "
+                    read -r choice
+                    local choice=$choice:l
+                else
+                    local choice="y"
+                fi
+
+                if [ "$choice" == "y" ]
+                then
+                    echo "Uninstalling cdpath..."
+                    rm -rf $cdfile
+                    sed -i 's/source "$HOME\/.cdpath"//' $shell
+                    cat $shell | grep "$grepstr" >/dev/null
+                    if [ $? -eq 0 ]
+                    then
+                        cat $shell | grep -v "$grepstr" | tee $shell >/dev/null
+                    fi
+                    sed -i "$clearEOF" $shell
+                    echo "Done."
                 fi
             ;;
             -i)
