@@ -23,7 +23,7 @@ $ export CDPATH=".:my_project:$HOME/company/projects/"
     - [Using install.sh](#using-installsh)
   - [Using cdpath.sh](#using-cdpathsh)
   - [Uninstalling](#uninstalling)
-  -[Known Problems](#known-problems)
+  - [Known Problems](#known-problems)
 
 ## Installation
 
