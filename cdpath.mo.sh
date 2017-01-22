@@ -10,8 +10,8 @@ function cdpath() {
     local shell="{{ shell }}"
     local clearEOF=':a;/^[ \n]*$/{$d;N;ba}'
     local usage="usage: cdpath [-h] [-r] [-l] [-i] [-u] <name> <path>\nSee \"cdpath -h\" for help."
-    local expstr="{{ expstr }}"
-    local grepstr="{{ grepstr }}"
+    local expstr={{ expstr }}
+    local grepstr={{ grepstr }}
 
     if [[ "$1" =~ ^\-.* ]]
     then

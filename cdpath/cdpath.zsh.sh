@@ -7,7 +7,7 @@ function cdpath() {
     local reset=`tput sgr0`
 
     local cdfile=$HOME/.cdpath
-    local shell="~/.zshrc"
+    local shell="/home/victor/.zshrc"
     local clearEOF=':a;/^[ \n]*$/{$d;N;ba}'
     local usage="usage: cdpath [-h] [-r] [-l] [-i] [-u] <name> <path>\nSee \"cdpath -h\" for help."
     local expstr="export CDPATH=".`cat "$HOME/.cdpath" | sed ':a;N;$!ba;s/\\n//g'`""

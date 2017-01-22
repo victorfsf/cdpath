@@ -7,11 +7,11 @@ function cdpath() {
     local reset=`tput sgr0`
 
     local cdfile=$HOME/.cdpath
-    local shell="~/.bashrc"
+    local shell="/home/victor/.bashrc"
     local clearEOF=':a;/^[ \n]*$/{$d;N;ba}'
     local usage="usage: cdpath [-h] [-r] [-l] [-i] [-u] <name> <path>\nSee \"cdpath -h\" for help."
-    local expstr="export CDPATH=".`cat "$HOME/.cdpath" | sed ":a;N;$!ba;s/\n//g"`""
-    local grepstr="export CDPATH=".`cat "$HOME/.cdpath" | sed ":a;N;\$!ba;s\/\\n//g"`""
+    local expstr='export CDPATH=".`cat "$HOME/.cdpath" | sed ":a;N;$!ba;s/\n//g"`"'
+    local grepstr='export CDPATH=".`cat "$HOME/.cdpath" | sed ":a;N;\$!ba;s\/\\n//g"`"'
 
     if [[ "$1" =~ ^\-.* ]]
     then
