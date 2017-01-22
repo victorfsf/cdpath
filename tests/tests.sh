@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. "assert.sh"
+. "../lib/assert.sh"
 . "../cdpath/cdpath.bash.sh"
 
 bold=`tput bold`

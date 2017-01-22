@@ -3,4 +3,4 @@ os:
     - linux
     - osx
 script:
-    - ./tests/tests.sh
+    - cd tests && bash tests.sh
