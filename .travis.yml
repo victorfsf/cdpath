@@ -5,7 +5,7 @@ os:
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install bash ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo -s && echo /usr/local/bin/bash >> /etc/shells && chsh -s /usr/local/bin/bash ; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew upgrade bash ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then /usr/local/Cellar/bash ; fi
 script:
     - cd tests && bash tests.sh
