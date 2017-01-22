@@ -202,4 +202,4 @@ $HOME/.cdpath
 Feel free to report any issues [here](https://github.com/victorfsf/cdpath/issues).
 
 - `cdpath` won't properly work with directories containing spaces in their names.
-
+- Not exactly sure if it works fine on OSX.
