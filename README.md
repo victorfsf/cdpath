@@ -66,6 +66,7 @@ $ . ~/.zshrc
 ```shell
 $ . ~/.bashrc
 ```
+After installing, you can safely remove the repository files you downloaded.
 
 ## Using cdpath.sh
 
@@ -170,4 +171,11 @@ All your shortcuts will be lost! (y/N):
 $ cdpath -u -y
 Uninstalling cdpath...
 Done.
+```
+
+## Uninstall
+
+To uninstall, just remove the `cdpath.sh` file and it's source from your shell's `rc file`:
+```
+source "/usr/local/bin/cdpath.sh"
 ```
