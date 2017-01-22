@@ -61,8 +61,7 @@ function cdpath() {
                     echo "    ${bold}${red}Nothing to show here${reset}"
                     echo -e "\n$usage"
                 else
-                    local paths=$paths
-                    for item in $paths
+                    while read item
                     do
                         local item=(`echo ${item//:/ }`)
                         if [ -z "${item[0]}" ]
@@ -74,7 +73,7 @@ function cdpath() {
                         echo "    ${green}${bold}${item[$i]}" \
                              "${reset}->" \
                              "${bold}${item[`expr $i + 1`]}${item[$i]}/${reset}"
-                    done
+                    done <<< "$paths"
                 fi
             ;;
             -u)
