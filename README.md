@@ -15,6 +15,16 @@ But, for that to happen, you'd have to `export CDPATH` with the following struct
 ```shell
 $ export CDPATH=".:my_project:$HOME/company/projects/"
 ```
+
+## Sumary
+
+  - [Installation](#installation)
+    - [Manual Installation](#manual-installation)
+    - [Using install.sh](#using-installsh)
+  - [Using cdpath.sh](#using-cdpathsh)
+  - [Uninstalling](#uninstalling)
+  -[Known Problems](#known-problems)
+
 ## Installation
 
 #### Manual Installation
@@ -184,3 +194,10 @@ Files to remove:
 $HOME/.cdpath
 /usr/local/bin/cdpath.sh
 ```
+
+## Known Problems
+
+Feel free to report any issues [here](https://github.com/victorfsf/cdpath/issues).
+
+- `cdpath` won't properly work with directories containing spaces in their names.
+
