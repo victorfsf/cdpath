@@ -1,5 +1,7 @@
 # cdpath.sh
 
+[![Build Status](https://travis-ci.org/victorfsf/cdpath.svg?branch=master)](https://travis-ci.org/victorfsf/cdpath)
+
 A simple CLI for handling the CDPATH environment variable.
 **Tested on Bash and ZSH**.
 
