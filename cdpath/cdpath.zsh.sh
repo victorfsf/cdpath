@@ -120,10 +120,10 @@ function cdpath() {
                 return 1
             ;;
         esac
-    elif [ $# == 0 ]
+    elif [ $# -eq 0 ]
     then
         echo -e $usage
-    elif [ $# != 2 ]
+    elif [ ! $# -eq 2 ]
     then
         echo "cdpath takes exactly 2 arguments ($# given)"
         echo -e "\n$usage"
@@ -134,7 +134,7 @@ function cdpath() {
             touch "$cdfile"
         fi
 
-        if [ "$2" == "." ]
+        if [[ "$2" == "." ]]
         then
             local dest="`pwd`/"
         elif [[ "$2" == *"/" ]]
@@ -145,7 +145,7 @@ function cdpath() {
         fi
 
         local baseDestDir=`basename $dest`
-        if [ "$baseDestDir" == "$1" ]
+        if [[ "$baseDestDir" == "$1" ]]
         then
             local dest="`dirname $dest`/"
         fi
