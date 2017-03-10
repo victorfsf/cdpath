@@ -14,6 +14,10 @@ function install_cdpath() {
     then
         echo 'source "/usr/local/bin/cdpath.sh"' >> $2
     fi
+    if [ ! -f $HOME/.cdpath ]
+    then
+        touch $HOME/.cdpath
+    fi
 }
 
 case "${1}" in

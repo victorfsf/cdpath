@@ -10,8 +10,8 @@ function cdpath() {
     local shell="$HOME/.zshrc"
     local clearEOF=':a;/^[ \n]*$/{$d;N;ba}'
     local usage="usage: cdpath [-h] [-r] [-l] [-i] [-u] <name> <path>\nSee \"cdpath -h\" for help."
-    local expstr="export CDPATH=".`cat "$HOME/.cdpath" | sed ':a;N;$!ba;s/\\n//g'`""
-    local grepstr="export CDPATH=".`cat "$HOME/.cdpath" | sed ':a;N;$!ba;s/\\n//g'`""
+    local expstr='export CDPATH=".`cat "$HOME/.cdpath" | sed ":a;N;$ba;s/\\\n//g"`"'
+    local grepstr='export CDPATH'
 
     if [[ "$1" =~ ^\-.* ]]
     then
