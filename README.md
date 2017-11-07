@@ -52,7 +52,7 @@ Run the following command:
 ```shell
 # shell = "~/.bashrc", "~/.zshrc" or any other shell .rc file
 $ bash <(curl -s https://raw.githubusercontent.com/victorfsf/cdpath/master/install.sh) <shell>
-# e.g. "bash <(curl -s https://raw.githubusercontent.com/victorfsf/cdpath/master/install.sh) /.bashrc"
+# e.g. "bash <(curl -s https://raw.githubusercontent.com/victorfsf/cdpath/master/install.sh) ~/.bashrc"
 ```
 
 ## Using cdpath.sh
