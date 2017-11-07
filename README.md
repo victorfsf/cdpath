@@ -31,13 +31,8 @@ $ export CDPATH=".:my_project:$HOME/company/projects/"
 
 #### Manual Installation
 Download the file `cdpath.sh` to any directory you'd like (usually, I'd use `/usr/local/bin/`):
-###### For BASH:
 ```
-curl -o /usr/local/bin/cdpath.sh https://raw.githubusercontent.com/victorfsf/cdpath/master/cdpath/cdpath.bash.sh
-```
-###### For ZSH:
-```
-curl -o /usr/local/bin/cdpath.sh https://raw.githubusercontent.com/victorfsf/cdpath/master/cdpath/cdpath.zsh.sh
+curl -o /usr/local/bin/cdpath.sh https://raw.githubusercontent.com/victorfsf/cdpath/master/cdpath.sh
 ```
 Then, add the following line to your shell's `rc file (.bashrc, .zshrc...)`:
 ```shell
@@ -49,36 +44,15 @@ source "/usr/local/bin/cdpath.sh"
 ```
 Then, restart or source your shell:
 ```shell
-$ . ~/.zshrc
-```
-###### OR
-```shell
 $ . ~/.bashrc
 ```
 
 #### Using install.sh
-Download or clone this repository. Then, execute the following commands:
-```
-$ chmod +x render.sh install.sh lib/mo
-$ ./install.sh -<shell: zsh, bash>
-```
-So, if you're using ZSH, you'd need to run:
-```
-$ ./install.sh -zsh
-```
-And if you're using Bash:
-```
-$ ./install.sh -bash
-```
-Then, restart or source your shell:
+Run the following command:
 ```shell
-$ . ~/.zshrc
+# shell = "~/.bashrc", "~/.zshrc" or any other shell .rc file
+$ bash <(curl -s https://raw.githubusercontent.com/victorfsf/cdpath/master/install.sh) <shell>
 ```
-###### OR
-```shell
-$ . ~/.bashrc
-```
-After installing, you can safely remove the repository files you downloaded.
 
 ## Using cdpath.sh
 
@@ -115,8 +89,8 @@ cdpath options:
     -h    Shows help
     -r    Removes a shortcut from cdpath (e.g. "cdpath -r <name>")
     -l    Lists all shortcuts and their respective paths
-    -i    Installs cdpath
-    -u    Uninstalls cdpath (use [-y] to skip input)
+    -i    Installs cdpath (e.g. "cdpath -i ~/.bashrc")
+    -u    Uninstalls cdpath (e.g. "cdpath -u ~/.bashrc")
 ```
 
 #### Adding a path/shortcut
@@ -166,21 +140,17 @@ Shortcuts:
 #### Installing the `.cdpath` file
 
 *This action will be performed when you add a new shortcut*, but if you want to create and configure the `~/.cdpath` file (in case you changed shells and that shell isn't properly configured, for example), you can just call:
-```
-cdpath -i
+```shell
+# shell = "~/.bashrc", "~/.zshrc" or any other shell .rc file
+cdpath -i <shell>
 ```
 
 #### Uninstalling the `.cdpath` file
 
 To remove the `~/.cdpath` file and its `source` from the shell's rc file, just type:
-```
-$ cdpath -u
-Are you sure you want to remove cdpath?
-All your shortcuts will be lost! (y/N): 
-```
-###### Or, to skip input:
-```
-$ cdpath -u -y
+```shell
+# shell = "~/.bashrc", "~/.zshrc" or any other shell .rc file
+$ cdpath -u <shell>
 Uninstalling cdpath...
 Done.
 ```
