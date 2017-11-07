@@ -64,9 +64,8 @@ cdpath() {
                 fi
                 printf "    ${green}${bold}${item[$i]} "
                 printf "${reset}➜ "
-                printf "${bold}${item[`expr $i + 1`]}${item[$i]}/${reset}"
+                printf "${bold}${item[`expr $i + 1`]}${item[$i]}/${reset}\n"
             done <<< "$paths"
-            printf "\n"
         fi
     }
 
