@@ -8,7 +8,7 @@ install() {
         return 1
     fi
     declare shell="$1"
-    curl -o /usr/local/bin/cdpath.sh -s https://raw.githubusercontent.com/victorfsf/cdpath/master/cdpath.sh
+    sudo curl -o /usr/local/bin/cdpath.sh -s https://raw.githubusercontent.com/victorfsf/cdpath/master/cdpath.sh
     cat "$shell" | grep 'source "/usr/local/bin/cdpath.sh"' >/dev/null
     if [ ! $? -eq 0 ]; then
         echo 'source "/usr/local/bin/cdpath.sh"' >> "$shell"
