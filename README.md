@@ -66,8 +66,8 @@ By using `cdpath.sh`, you can not only have more control over the paths you choo
   - [Adding a path/shortcut](#adding-a-pathshortcut)
   - [Removing a path/shortcut](#removing-a-pathshortcut)
   - [Listing paths/shortcuts](#listing-pathsshortcuts)
-  - [Installing the `.cdpathrc` file](#installing-the-cdpathrc-file)
-  - [Uninstalling the `.cdpathrc` file](#uninstalling-the-cdpathrc-file)
+  - [Installing the `.cdpath` file](#installing-the-cdpath-file)
+  - [Uninstalling the `.cdpath` file](#uninstalling-the-cdpath-file)
 
 #### Base Command
 
@@ -138,17 +138,17 @@ Shortcuts:
     my_project -> /home/user/company/projects/my_project
 ```
 
-#### Installing the `.cdpathrc` file
+#### Installing the `.cdpath` file
 
-*This action will be performed when you add a new shortcut*, but if you want to create and configure the `~/.cdpathrc` file (in case you changed shells and that shell isn't properly configured, for example), you can just call:
+*This action will be performed when you add a new shortcut*, but if you want to create and configure the `~/.cdpath` file (in case you changed shells and that shell isn't properly configured, for example), you can just call:
 ```shell
 # shell = "~/.bashrc", "~/.zshrc" or any other shell .rc file
 cdpath -i <shell>
 ```
 
-#### Uninstalling the `.cdpathrc` file
+#### Uninstalling the `.cdpath` file
 
-To remove the `~/.cdpathrc` file and its `source` from the shell's rc file, just type:
+To remove the `~/.cdpath` file and its `source` from the shell's rc file, just type:
 ```shell
 # shell = "~/.bashrc", "~/.zshrc" or any other shell .rc file
 $ cdpath -u <shell>
@@ -164,7 +164,7 @@ source "/usr/local/bin/cdpath.sh"
 ```
 Files to remove:
 ```
-$HOME/.cdpathrc
+$HOME/.cdpath
 /usr/local/bin/cdpath.sh
 ```
 

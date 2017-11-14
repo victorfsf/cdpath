@@ -166,3 +166,5 @@ cdpath() {
         sed -i "$clearEOF" "$cdfile"
     fi
 }
+
+alias cdp="cdpath"
